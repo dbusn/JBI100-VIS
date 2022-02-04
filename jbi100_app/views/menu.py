@@ -106,6 +106,6 @@ def generate_control_card(viewType):
             style={"textAlign": "float-left"}
         )
 
-
+# Return the left column
 def make_menu_layout(viewType):
     return [generate_description_card(), generate_control_card(viewType)]

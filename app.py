@@ -8,8 +8,6 @@ from jbi100_app.views.heatmap import MapViewHeat
 from jbi100_app.views.hexagon import MapViewHex
 from jbi100_app.views.menu import make_menu_layout
 
-# TODO add documentation
-
 # Create data
 df = get_data()
 
@@ -121,6 +119,7 @@ def update_view(tab):
         return html.Div([mapViewHex]), make_menu_layout(tab)
 
 
+# Callback for updating the viewport, z-attribute of the heatmap
 @app.callback(
     Output('heatmap', 'figure'),
     Input('select-z-attribute-dropdown', 'value'),
@@ -133,6 +132,7 @@ def update_heatmap(attr, city):
     return mapViewHeat.update_z_attr(attr)
 
 
+# Callback for updating the vieport of the hexmap
 @app.callback(
     Output('hexmap', 'figure'),
     Input('hex-city-selection-dropdown', 'value')

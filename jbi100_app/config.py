@@ -4,6 +4,8 @@ from jbi100_app.data import get_coordinates
 
 color_list1 = ["green", "blue"]
 color_list2 = ["red", "purple"]
+
+# All attributes in the dataset
 final_old = ['Day_of_Week', 'Hour', 'Road_Type',
              'Speed_limit', 'Pedestrian_Crossing-Physical_Facilities', 'Light_Conditions',
              'Weather_Conditions', 'Road_Surface_Conditions', 'Special_Conditions_at_Site',
@@ -17,15 +19,19 @@ final_old = ['Day_of_Week', 'Hour', 'Road_Type',
              'Did_Police_Officer_Attend_Scene_of_Accident', 'Casualty_Class', 'Sex_of_Casualty',
              'Casualty_Severity', 'Car_Passenger', 'Casualty_Home_Area_Type', 'Driver_Home_Area_Type']
 
+# All attributes available for the barplot
 final = ['Day_of_Week', 'Hour', 'Road_Type', 'Speed_limit', 'Pedestrian_Crossing-Physical_Facilities',
          'Light_Conditions', 'Pedestrian_Location', 'Pedestrian_Movement', 'Weather_Conditions', 'Accident_Severity',
          'Pedestrian_Crossing-Human_Control', 'Casualty_Severity', 'Casualty_Class', 'Urban_or_Rural_Area',
          'Junction_Location', 'Sex_of_Casualty', 'Road_Surface_Conditions']
 
+# All attributes available for the heatmap
 attributes_heat = ['Speed_limit', 'Accident_Severity', 'Hour', 'Junction_Detail', 'Casualty_Class']
 
+# List of months
 months_list = ['All', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October',
                'November', 'December']
 
+# Dataframe containging cities with their respective coordinates
 cities_df = get_coordinates().sort_values('city')
 # pip install requirements.txt
