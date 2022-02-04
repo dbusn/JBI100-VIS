@@ -2,9 +2,12 @@ import pandas as pd
 import plotly.figure_factory as ff
 from dash import html, dcc
 
+from ..config import cities_df
+
 
 class MapViewHex(html.Div):
     df = pd.read_csv('https://raw.githubusercontent.com/dbusn/JBI100-VIS/main/jbi100_app/datasets/dataset_unique.csv')
+    current_city = 'Brighton'
 
     df['Latitude'] = df['Latitude'].astype(float)
     df['Longitude'] = df['Longitude'].astype(float)
@@ -20,7 +23,16 @@ class MapViewHex(html.Div):
                       height=650)
     fig.update_layout(margin={"r": 0, "t": 0, "l": 0, "b": 0})
 
+    def update_hexmap_area(self, city):
+        self.current_city = city
+        cities_df.astype('str')
+        city_row = cities_df.loc[cities_df['city'] == city]
+        self.fig.update_mapboxes(center_lat=city_row.iloc[0]['Latitude'], center_lon=city_row.iloc[0]['Longitude'],
+                                 zoom=11)
+        return self.fig
+
     def __init__(self, name):
+        self.current_city = 'Brighton'
         self.html_id = name.lower().replace(" ", "-")
 
         # Equivalent to `html.Div([...])`

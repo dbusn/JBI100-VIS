@@ -1,6 +1,6 @@
-from datetime import date
 from dash import dcc, html
-from ..config import final, attributes_heat, cities_df
+
+from ..config import final, attributes_heat, cities_df, months_list
 
 
 def generate_description_card():
@@ -14,18 +14,17 @@ def generate_description_card():
             html.H5("Visualization of Traffic Accidents in the UK"),
             html.Div(
                 id="intro",
-                children="Choose the attributes of your interest",
             ),
         ],
     )
 
 
-def generate_control_card(isHeatMap):
+def generate_control_card(viewType):
     """
 
     :return: A Div containing controls for graphs.
     """
-    if isHeatMap is True:
+    if viewType == 'heat-view':
         return html.Div(
             id="control-card",
             children=[
@@ -42,12 +41,12 @@ def generate_control_card(isHeatMap):
                 dcc.Dropdown(
                     id="city-selection-dropdown",
                     options=[{"label": entry, "value": entry} for entry in cities_df['city'].tolist()],
-                    value='Hunshelf',
+                    value='Brighton',
                 ),
             ],
             style={"textAlign": "float-left"}
         )
-    else:
+    elif viewType == 'chart-view' or viewType == 'chart-2-view':
         return html.Div(
             id="control-card",
             children=[
@@ -57,6 +56,7 @@ def generate_control_card(isHeatMap):
                 dcc.Dropdown(
                     id='month-selector-dropdown',
                     options=[{"label": i.replace("_", " "), "value": i} for i in months_list],
+                    value=months_list[0]
                 ),
                 html.Br(),
                 html.Br(),
@@ -87,9 +87,25 @@ def generate_control_card(isHeatMap):
                     options=[{"label": 'Amount', "value": 'Amount'}, {"label": 'Percentage', "value": 'Percentage'}],
                     value="Amount",
                 ),
-            ], style={"textAlign": "float-left"}
+            ],
+            style={"textAlign": "float-left"}
+        )
+    elif viewType == 'hex-view':
+        return html.Div(
+            id="control-card",
+            children=[
+                html.H6("Tools for the HexMap View: "),
+                html.Br(),
+                html.Label('Select City:'),
+                dcc.Dropdown(
+                    id="hex-city-selection-dropdown",
+                    options=[{"label": entry, "value": entry} for entry in cities_df['city'].tolist()],
+                    value='Brighton',
+                ),
+            ],
+            style={"textAlign": "float-left"}
         )
 
 
-def make_menu_layout(isHeatMap):
-    return [generate_description_card(), generate_control_card(isHeatMap)]
+def make_menu_layout(viewType):
+    return [generate_description_card(), generate_control_card(viewType)]

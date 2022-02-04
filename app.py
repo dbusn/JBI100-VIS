@@ -54,6 +54,7 @@ app.layout = html.Div(
     ],
 )
 
+
 # Generate barplot-1 in the 1st page of app
 @app.callback(
     Output("barplot-1", "figure"),
@@ -67,6 +68,7 @@ def update_0(feature_x_1, feature_x_2):
     # barplot_0.reload_df(df)
     return barplot_0.update(feature_x_1, feature_x_2, "Amount")
 
+
 # Generate barplot-2 in the 1st page of app
 @app.callback(
     Output("barplot-2", "figure"),
@@ -79,6 +81,7 @@ def update_1(feature_x_1, feature_x_2):
     # df = update_date(start_date, end_date)
     # barplot_1.reload_df(df)
     return barplot_1.update(feature_x_1, feature_x_2, "Percentage")
+
 
 # Generate barplot-3 in the 2nd page of app
 @app.callback(
@@ -94,19 +97,21 @@ def update_2(feature_x_1, feature_x_2, type):
     # barplot_2.reload_df(df)
     return barplot_2.update(feature_x_1, feature_x_2, type)
 
+
 # Generate barplot-4 in the 2nd page of app
 @app.callback(
     Output("barplot-4", "figure"),
     Input("select-x-attribute-bar-1", "value"),
     Input("select-x-attribute-bar-3", 'value'),
     Input("amount-or-percent", 'value'),
-    # Input("date-picker-range", "start_date"),
-    # Input("date-picker-range", "end_date"),
+    # Input('month-selection-dropdow', 'value'),
 )
 def update_3(feature_x_1, feature_x_3, type):
     # df = update_date(start_date, end_date)
     # barplot_3.reload_df(df)
+
     return barplot_3.update(feature_x_1, feature_x_3, type)
+
 
 # Generate menu on the left side of the app
 @app.callback(
@@ -114,17 +119,17 @@ def update_3(feature_x_1, feature_x_3, type):
     Output('left-column', 'children'),
     Input('tab-aggregator', 'value')
 )
-
 # Update menu based on the type of chart/view chosen
 def update_view(tab):
     if tab == 'chart-view':
-        return html.Div([barplot_0, barplot_1]), make_menu_layout(False)
+        return html.Div([barplot_0, barplot_1]), make_menu_layout(tab)
     elif tab == 'chart-2-view':
-        return html.Div([barplot_2, barplot_3]), make_menu_layout(False)
+        return html.Div([barplot_2, barplot_3]), make_menu_layout(tab)
     elif tab == 'heat-view':
-        return html.Div([mapViewHeat]), make_menu_layout(True)
-    else:
-        return html.Div([mapViewHex]), make_menu_layout(False)
+        return html.Div([mapViewHeat]), make_menu_layout(tab)
+    elif tab == 'hex-view':
+        return html.Div([mapViewHex]), make_menu_layout(tab)
+
 
 @app.callback(
     Output('heatmap', 'figure'),
@@ -138,6 +143,15 @@ def update_heatmap(attr, city):
     return mapViewHeat.update_z_attr(attr)
 
 
+@app.callback(
+    Output('hexmap', 'figure'),
+    Input('hex-city-selection-dropdown', 'value')
+)
+def update_hexmap(city):
+    # if city != mapViewHex.current_city:
+    #     return mapViewHex.update_hexmap_area(city)
+    return mapViewHex.update_hexmap_area(city)
+
+
 if __name__ == '__main__':
     app.run_server(debug=False, dev_tools_ui=False, use_reloader=True)
-

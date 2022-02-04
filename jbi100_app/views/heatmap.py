@@ -17,14 +17,11 @@ class MapViewHeat(html.Div):
 
     fig.update_mapboxes(zoom=6)
 
-    current_city = 'Abbots Langley'
+    current_city = 'Brighton'
 
     def update_z_attr(self, attr):
         self.fig.update_traces(z=self.df[attr])
         return self.fig
-
-    def get_current_city(self):
-        return self.current_city
 
     def update_heatmap_area(self, city):
         self.current_city = city
