@@ -60,9 +60,10 @@ app.layout = html.Div(
     Output("barplot-1", "figure"),
     Input("select-x-attribute-bar-1", "value"),
     Input("select-x-attribute-bar-2", 'value'),
+    Input("month-selector-dropdown", "value")
 )
-def update_0(feature_x_1, feature_x_2):
-    return barplot_0.update(feature_x_1, feature_x_2, "Amount")
+def update_0(feature_x_1, feature_x_2, month):
+    return barplot_0.update(feature_x_1, feature_x_2, "Amount", month)
 
 
 # Generate barplot-2 in the 1st page of app
@@ -70,9 +71,11 @@ def update_0(feature_x_1, feature_x_2):
     Output("barplot-2", "figure"),
     Input("select-x-attribute-bar-1", "value"),
     Input("select-x-attribute-bar-2", 'value'),
+    Input("month-selector-dropdown", "value")
+
 )
-def update_1(feature_x_1, feature_x_2):
-    return barplot_1.update(feature_x_1, feature_x_2, "Percentage")
+def update_1(feature_x_1, feature_x_2, month):
+    return barplot_1.update(feature_x_1, feature_x_2, "Percentage", month)
 
 
 # Generate barplot-3 in the 2nd page of app
@@ -81,9 +84,11 @@ def update_1(feature_x_1, feature_x_2):
     Input("select-x-attribute-bar-1", "value"),
     Input("select-x-attribute-bar-2", 'value'),
     Input("amount-or-percent", 'value'),
+    Input("month-selector-dropdown", "value")
+
 )
-def update_2(feature_x_1, feature_x_2, type):
-    return barplot_2.update(feature_x_1, feature_x_2, type)
+def update_2(feature_x_1, feature_x_2, type, month):
+    return barplot_2.update(feature_x_1, feature_x_2, type, month)
 
 
 # Generate barplot-4 in the 2nd page of app
@@ -92,10 +97,10 @@ def update_2(feature_x_1, feature_x_2, type):
     Input("select-x-attribute-bar-1", "value"),
     Input("select-x-attribute-bar-3", 'value'),
     Input("amount-or-percent", 'value'),
-    # Input('month-selection-dropdow', 'value'),
+    Input("month-selector-dropdown", "value")
 )
-def update_3(feature_x_1, feature_x_3, type):
-    return barplot_3.update(feature_x_1, feature_x_3, type)
+def update_3(feature_x_1, feature_x_3, type, month):
+    return barplot_3.update(feature_x_1, feature_x_3, type, month)
 
 
 # Generate menu on the left side of the app

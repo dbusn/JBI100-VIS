@@ -24,7 +24,7 @@ final = ['Day_of_Week', 'Hour', 'Road_Type', 'Speed_limit', 'Pedestrian_Crossing
 
 attributes_heat = ['Speed_limit', 'Accident_Severity', 'Hour', 'Junction_Detail', 'Casualty_Class']
 
-months_list = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October',
+months_list = ['All', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October',
                'November', 'December']
 
 cities_df = get_coordinates().sort_values('city')

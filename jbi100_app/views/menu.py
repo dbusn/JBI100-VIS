@@ -11,7 +11,7 @@ def generate_description_card():
     return html.Div(
         id="description-card",
         children=[
-            html.H5("Visualization of Traffic Accidents in the UK"),
+            html.H5("Visualization of Traffic Accidents in 2015 in the UK"),
             html.Div(
                 id="intro",
             ),
