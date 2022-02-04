@@ -60,12 +60,8 @@ app.layout = html.Div(
     Output("barplot-1", "figure"),
     Input("select-x-attribute-bar-1", "value"),
     Input("select-x-attribute-bar-2", 'value'),
-    # Input("date-picker-range", "start_date"),
-    # Input("date-picker-range", "end_date"),
 )
 def update_0(feature_x_1, feature_x_2):
-    # df = update_date(start_date, end_date)
-    # barplot_0.reload_df(df)
     return barplot_0.update(feature_x_1, feature_x_2, "Amount")
 
 
@@ -74,12 +70,8 @@ def update_0(feature_x_1, feature_x_2):
     Output("barplot-2", "figure"),
     Input("select-x-attribute-bar-1", "value"),
     Input("select-x-attribute-bar-2", 'value'),
-    # Input("date-picker-range", "start_date"),
-    # Input("date-picker-range", "end_date"),
 )
 def update_1(feature_x_1, feature_x_2):
-    # df = update_date(start_date, end_date)
-    # barplot_1.reload_df(df)
     return barplot_1.update(feature_x_1, feature_x_2, "Percentage")
 
 
@@ -89,12 +81,8 @@ def update_1(feature_x_1, feature_x_2):
     Input("select-x-attribute-bar-1", "value"),
     Input("select-x-attribute-bar-2", 'value'),
     Input("amount-or-percent", 'value'),
-    # Input("date-picker-range", "start_date"),
-    # Input("date-picker-range", "end_date"),
 )
 def update_2(feature_x_1, feature_x_2, type):
-    # df = update_date(start_date, end_date)
-    # barplot_2.reload_df(df)
     return barplot_2.update(feature_x_1, feature_x_2, type)
 
 
@@ -107,9 +95,6 @@ def update_2(feature_x_1, feature_x_2, type):
     # Input('month-selection-dropdow', 'value'),
 )
 def update_3(feature_x_1, feature_x_3, type):
-    # df = update_date(start_date, end_date)
-    # barplot_3.reload_df(df)
-
     return barplot_3.update(feature_x_1, feature_x_3, type)
 
 
