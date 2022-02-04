@@ -1,53 +1,38 @@
-# JBI100-example-app
+# Visualization App on the Traffic Accidents in the UK
 
 ## About this app
 
-You can use this as a basic template for your JBI100 visualization project.
+The visualization app aims to show the bar charts, hexmap and heatmap on the dataset regarding traffic accident in the UK. Several interactions can be achieved in the app, such as selecting the attributes of the interest.
 
-## Requirements
+## Requirements needed
 
-* Python 3 (add it to your path (system variables) to make sure you can access it from the command prompt)
-* Git (https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+1. Visual Studio Code is used.
+2. Python 3.8 interpreter is used.
+3. There is dash with version 2.0.0 or higher in the python interpreter.
+4. There is numpy with version 1.21.2 or higher in the python interpreter.
+5. There is pandas with version 1.3.3 or higher in the python interpreter.
+6. There is plotly with exactly or close to version 5.5.0 in the python interpreter.
 
-## How to run this app
+## How to run the app
 
-We suggest you to create a virtual environment for running this app with Python 3. Clone this repository 
-and open your terminal/command prompt in the root folder.
+1. Upzip the folder with all codes.
+2. Open Visual Studio Code. Make sure all requirements above are met. If not, install all of the necessary packages into the python interpreter.
+3. Click "File" at the top left corner and then click "Open Folder" and select the upzip folder. After that, click "Select Folder" so that all files are opened in VS Code.
+3. On the left side of VS Code, an explorer should be found with all file names inside the folder. Click "app.py" and open it.
+4. Click the triangle button at the top right corner of the VS code to run the app.
+5. In the terminal at the bottom, a sentence with the app website is shown (e.g. Running on http://127.0.0.1:8050/ (Press CTRL+C to quit)). Click the link to open the browser and use the visualization app. Make sure the VS code app is still running in the background.
 
+## Our own implementation on the app
 
-open the command prompt
-cd into the folder where you want to save the files and run the following commands. To get the HTTPS link, press the clone button in the right top corner and then copy the link under "Clone with HTTPS". 
+1. To reduce the storage memory and running time of the app, we only select several useful attributes from the original dataset and create a new csv file to store these data.
+2. We unify all the unknown labels to the same value instead of allowing them to be different values. This allows better filter of the data when running the app.
+3. We convert the numerical values of the items per attribute to the short literal meaning. This allows everyone to understand quickly what every unique values in an attribute means.
+4. We create new attributes regarding day of week and hour. This allows more useful interpretation of the data.
+5. We only remove rows with unknown values if this is the case for the attribute of interest. (e.g. A row has accident severity as unknown and speed limit as known. If we are interested in accident severity, this row is removed from the visualization. But if we are interested in speed limit, this row is kept.)
+6. We allow selecting several attributes from many options to be shown in the graph.
+7. Several tabs are used to show different graphs instead of showing all of them in one tab. This allows esier navigation in the app.
 
-```
-> git clone <HTTPS link>
-> cd <folder name on your computer>
-> python -m venv venv
-
-```
-If python is not recognized use python3 instead
-
-In Windows: 
-
-```
-> venv\Scripts\activate
-
-```
-In Unix system:
-```
-> source venv/bin/activate
-```
-
-Install all required packages by running:
-```
-> pip install -r requirements.txt
-```
-
-Run this app locally with:
-```
-> python app.py
-```
-You will get a http link, open this in your browser to see the results. You can edit the code in any editor (e.g. Visual Studio Code) and if you save it you will see the results in the browser.
-
-## Resources
-
-* [Dash](https://dash.plot.ly/)
+## What we get from existing libraries
+1. We use plotly and dash to plot the graphs (stacked bar chart, hexmap and heatmap) in an app that allows interaction.
+2. We make use of the functions in the libraries to define apperance of the app, such as the menu content and the graph appearance.
+3. We are able to show certain data on Open Street Map thanks to the library.
